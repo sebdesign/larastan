@@ -247,6 +247,14 @@ function test(
         'Illuminate\Database\Eloquent\Relations\HasManyThrough<App\Part, App\Mechanic, App\User>',
         $user->through($user->mechanic())->has(fn ($mechanic) => $mechanic->parts()),
     );
+
+    assertType(
+        'App\AccountCollection<int, App\Account>',
+        $user->accountsCamel()->createMany([
+            ['name' => 'foo'],
+            ['name' => 'bar'],
+        ]),
+    );
 }
 
 /**
